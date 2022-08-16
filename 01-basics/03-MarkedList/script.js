@@ -29,4 +29,24 @@ const emails = [
   'Isaias_Kuhic@jarrett.net',
 ];
 
-// Требуется создать Vue приложение
+// Требуется создать Vue приложение\
+import { createApp, defineComponent } from './vendor/vue.esm-browser.js';
+
+const App = defineComponent({
+  data () {
+    return {
+      inputText: ''
+    }
+  },
+  computed: {
+    emailsList () {
+      return emails.map((email) => ({
+        name: email,
+        isFiltered: email.toLowerCase().includes(this.inputText.toLowerCase()) && this.inputText !== ''
+      }))
+    }
+  }
+})
+
+const app = createApp(App)
+const vm = app.mount('#app')
