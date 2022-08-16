@@ -39,7 +39,7 @@ const App = defineComponent({
     }
   },
   computed: {
-    getEmails () {
+    emailsList () {
       return emails.map((email) => ({
         name: email,
         isFiltered: email.toLowerCase().includes(this.inputText.toLowerCase()) && this.inputText !== ''

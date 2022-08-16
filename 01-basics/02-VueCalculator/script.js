@@ -25,20 +25,6 @@ const App = defineComponent({
           return 0
       }
     }
-  },
-  methods: {
-    sum (a, b) {
-      return a + b
-    },
-    subtract (a, b) {
-      return a - b
-    },
-    multiply (a, b) {
-      return a * b
-    },
-    divide (a, b) {
-      return a / b
-    }
   }
 })
 

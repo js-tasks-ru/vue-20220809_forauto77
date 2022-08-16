@@ -23,7 +23,7 @@ const App = defineComponent({
     }
   },
   computed: {
-    meetupDescription () {
+    meetupTitle () {
       return this.meetup?.title
     }
   },

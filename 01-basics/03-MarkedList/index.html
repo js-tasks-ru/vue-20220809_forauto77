@@ -21,9 +21,9 @@
         </div>
         <ul>
           <li
-            v-for="(mail, index) of getEmails"
+            v-for="(mail, index) of emailsList"
             :key="index"
-            :class="mail.isFiltered ? 'marked' : ''"
+            :class="{ 'marked': mail.isFiltered }"
           >
             {{ mail.name }}
           </li> 
