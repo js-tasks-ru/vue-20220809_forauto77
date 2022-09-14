@@ -1,24 +1,55 @@
 <template>
   <div class="toasts">
-    <div class="toast toast_success">
-      <ui-icon class="toast__icon" icon="check-circle" />
-      <span>Success Toast Example</span>
-    </div>
-
-    <div class="toast toast_error">
-      <ui-icon class="toast__icon" icon="alert-circle" />
-      <span>Error Toast Example</span>
+    <div
+      class="toast__item"
+      v-for="toast of toasts"
+      :key="toast.id"
+    >
+      <ui-toast
+        :toast="toast"
+        @remove="remove"
+      />
     </div>
   </div>
 </template>
 
 <script>
-import UiIcon from './UiIcon.vue';
+import UiToast from './UiToast.vue';
 
 export default {
   name: 'TheToaster',
 
-  components: { UiIcon },
+  components: { UiToast },
+
+  data () {
+    return {
+      toasts: [],
+      id: 0
+    }
+  },
+  methods: {
+    success (message) {
+      this.toasts.push({
+        type: 'success',
+        message,
+        id: this.id
+      })
+      this.id++
+    },
+    error (message) {
+      console.log(message)
+      this.toasts.push({
+        type: 'error',
+        message,
+        id: this.id
+      })
+      this.id++
+    },
+    remove (id) {
+      const index = this.toasts.findIndex(item => item.id === id)
+      this.toasts.splice(index, 1)
+    }
+  }
 };
 </script>
 
@@ -41,7 +72,7 @@ export default {
   }
 }
 
-.toast {
+.toast__item {
   display: flex;
   flex: 0 0 auto;
   flex-direction: row;
@@ -55,19 +86,7 @@ export default {
   width: auto;
 }
 
-.toast + .toast {
+.toast__item + .toast__item {
   margin-top: 20px;
-}
-
-.toast__icon {
-  margin-right: 12px;
-}
-
-.toast.toast_success {
-  color: var(--green);
-}
-
-.toast.toast_error {
-  color: var(--red);
 }
 </style>
